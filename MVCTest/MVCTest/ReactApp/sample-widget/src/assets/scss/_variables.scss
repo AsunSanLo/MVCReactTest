@@ -1,0 +1,69 @@
+$z-layers: (
+	modal-content: 9003,
+	modal-overlay: 9002,
+	above: 900,
+	default: 1,
+	below: -1
+);
+
+$size-vars: (
+	fs-12: rem(12px),
+	fs-14: rem(14px),
+	fs-16: rem(16px),
+	fs-24: rem(24px),
+	fs-32: rem(32px),
+);
+
+// ****    $LAYOUT    **** \\
+$sizes: (
+	gutter: rem(8px),
+	h-logo: rem(53.33px)
+);
+
+// *****  BASE COLORS: all global colors for our app  ***** \\
+// Primary colors
+$c-primary: #00858C;
+$c-secondary: #00ABA8;
+$c-tertiary:#90CCB7;
+$c-quaternary: #6F927C;
+
+// Grey scale colors
+$c-dark: #1B1B1B;
+$c-grey: #7F7F7F;
+$c-light-grey: #E1E1E1;
+$c-dirty-white: #F9F9F9;
+$c-white: #FFF;
+
+// State colors
+$c-error: #FF002B;
+
+$brand-colors: (
+	primary: #00858C,
+	secondary: #00ABA8,
+	tertiary: #90CCB7,
+	quaternary: #6F927C,
+	dark: $c-dark,
+	grey: $c-grey,
+	light: $c-light-grey,
+	dirty: $c-dirty-white,
+	white: $c-white,
+	danger: $c-error,
+	disabled: #F0F0F0,
+	text-input-disabled: #BBBEB4,
+	text-input: #494949,
+	label: #BBBEB4
+);
+
+// Layout colors
+$bg-base: #FBFCFD;
+
+// *****  FONTS CONFIG: Fonts definitions  ***** \\
+// $ff-base: 'ThemixRegular', sans-serif;
+$ff-base: 'ThemixRegular';
+$ff-base-bold: 'ThemixBold';
+$lh-base: 1.1em;
+$fc-base: $c-dark;
+$fc-secondary: #666;
+
+
+$webChatWidth: 350px;

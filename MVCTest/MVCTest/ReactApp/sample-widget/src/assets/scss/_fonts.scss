@@ -1,0 +1,17 @@
+$font-path: "../fonts";
+
+@font-face {
+	font-family: 'ThemixRegular';
+	src:
+		url('#{$font-path}/TheMixSemiLight-Plain-merged.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'ThemixBold';
+	src:
+		url('#{$font-path}/TheMixBold-Plain-merged.woff') format('woff');
+    font-weight: normal;
+	font-style: normal;
+}

@@ -1,0 +1,13 @@
+html {
+	font-size: fs(fs-14);
+	text-size-adjust: none;
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	font-size: fs(fs-32);
+	line-height: $lh-base;
+	font-family: $ff-base;
+	height: 100%;
+}

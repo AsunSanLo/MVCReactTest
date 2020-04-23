@@ -1,0 +1,11 @@
+@import '../assets/scss/variables';
+
+.App-new-logo {
+    background: url('../img/example.png');
+    height: 10vmin;
+}
+
+.text {
+     font-family: $ff-base;
+    color: $c-primary;
+}
