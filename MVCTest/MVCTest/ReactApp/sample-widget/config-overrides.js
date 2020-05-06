@@ -7,6 +7,8 @@ module.exports = function override(config, env) {
     }));
     config.output.chunkFilename = "static/js/[name].chunk.js";
 
+    config.externals = config.externals || {};
+    config.externals.react = "React";
     config.module.rules.forEach(topRule=> {
         if (topRule.oneOf) {
             topRule.oneOf.forEach(rule => {
