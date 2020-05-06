@@ -4,16 +4,11 @@ import {ReactComponent as Prueba} from './logo.svg';
 import logo from './logo.svg';
 import './App.css'; 
 import {TestComponent} from './TestComponent/TestComponent';
-import {ReusableComponent} from 'mvc-dll/src/components/ReusableComponent';
 
 function App() { 
   return (
     <div className="App">
       <header className="App-header">  
-        <ReusableComponent />
-        <img src={example} className="App-logo" alt="logo" />  
-        <img src={logo} className="App-logo" alt="logo" />  
-        <Prueba className="App-logo"></Prueba>
         <p> 
 
         <TestComponent name="Asun" />
@@ -28,6 +23,11 @@ function App() {
         
           Learn React
         </a>
+        <div>Here I'm testing the different ways to use images. You should see 3 images</div>
+        
+        <img src={example} className="App-logo" alt="logo" />  
+        <img src={logo} className="App-logo" alt="logo" />  
+        <Prueba className="App-logo"></Prueba>
       </header>
     </div>
   );
