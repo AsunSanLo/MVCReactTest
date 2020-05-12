@@ -10,21 +10,21 @@
 
 ## 2. Adaptar la configuración de webpack
 
-2.1. Si tenemos control de versiones, hay que hacer commit antes de continuar
+2.1. Si tenemos control de versiones, hay que hacer **commit** antes de continuar
 
 
-2.2. Ejecutar el comando eject para poder modificar la configuración de webpack
+2.2. Ejecutar el comando **eject** para poder modificar la configuración de webpack
 
 `npm run eject`
 
-2.3. Para conservar la configuración original, renombrar el fichero **webpack.config.js** a webpack.config.default.js
+2.3. Para conservar la configuración original, renombrar el fichero webpack.config.js a **webpack.config.default.js**
 
-2.4. Crear un nuevo fichero webpack.config.js en la misma ruta, de manera que dentro de config/ tendríamos:
+2.4. Crear un nuevo fichero **webpack.config.js** en la misma ruta, de manera que dentro de config/ tendríamos:
 
         - webpack.config.default.js
         - webpack.config.js
 
-2.5. Copiar el siguiente código en webpack.config.js
+2.5. Copiar el siguiente código en **webpack.config.js**
 
 ```
 'use strict';
