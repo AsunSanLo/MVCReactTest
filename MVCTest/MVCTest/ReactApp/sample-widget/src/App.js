@@ -6,13 +6,14 @@ import './App.css';
 import {TestComponent} from './TestComponent/TestComponent';
 
 function App() { 
+
   return (
     <div className="App">
       <header className="App-header">  
         <p> 
 
         <TestComponent name="Asun" />
-          THIS IS MY NEW REACT APP - HELLO AGAIN :)
+          THIS IS MY NEW REACT APP - HELLO ASUN :)
         </p>
         <a
           className="App-link"
