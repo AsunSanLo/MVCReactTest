@@ -1,44 +1,91 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Crear un widget React con TypeScript
 
-## Available Scripts
+## 1. Crear un proyecto nuevo
 
-In the project directory, you can run:
+1.1. Crear un nuevo proyecto con la plantilla Create React App
 
-### `npm start`
+`npx create-react-app [nombre-widget] --template typescript`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+*Nota: Si el proyecto se crea vacío (sólo node_modules y package.json) es un bug de la plantilla de React. Actualmente la versión que funciona es 3.4.0*
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## 2. Adaptar la configuración de webpack
 
-### `npm test`
+2.1. Si tenemos control de versiones, hay que hacer commit antes de continuar
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+2.2. Ejecutar el comando eject para poder modificar la configuración de webpack
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+`npm run eject`
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+2.3. Para conservar la configuración original, renombrar el fichero **webpack.config.js** a webpack.config.default.js
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2.4. Crear un nuevo fichero webpack.config.js en la misma ruta, de manera que dentro de config/ tendríamos:
 
-### `npm run eject`
+        - webpack.config.default.js
+        - webpack.config.js
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+2.5. Copiar el siguiente código en webpack.config.js
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+'use strict';
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+const basePath = '[PATH_TO_YOUR_WIDGET_BUILD]'; //ex: '/ReactAp/ts-sample-widget/build/'
+const defaultConfig = require('./webpack.config.default.js');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+module.exports = mode => {
 
-## Learn More
+  //Loads default CRA webpack configuration
+  const config = defaultConfig(mode);
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  //Config to generate the bundled css without hash
+  config.plugins.push(new MiniCssExtractPlugin({
+    filename: 'static/css/[name].css',
+    chunkFilename: 'static/css/[name].chunk.css',
+    ignoreOrder: false,
+  }));
+
+  //Config to generate the bundled js without hash
+  config.output.chunkFilename = "static/js/[name].chunk.js";
+  config.output.filename = 'static/js/bundle.js',
+
+
+  //Config to avoid including react js inside the bundle
+  config.externals = config.externals || {};
+  config.externals.react = "React";
+
+  //Config to set the base path to load media resources along the code 
+  config.module.rules.forEach(topRule => {
+    if (topRule.oneOf) {
+      topRule.oneOf.forEach(rule => {
+        if (rule.loader && rule.loader.indexOf('url-loader') !== -1) {
+          rule.test.push(/\.svg$/);
+          rule.test.push(/\.woff$/);
+          rule.options.publicPath = basePath
+        }
+      })
+    }
+  });
+  return config;
+};
+```
+
+
+## 3. Configurar auto build al cambiar ficheros
+
+3.1. Instalar los paquetes necesarios para que se realice la compilación automáticamente al cambiar ficheros.
+
+`npm install onchange npm-run-all`
+
+3.2. Modificar la sección de scripts del fichero **package.json** para que quede de la siguiente manera:
+
+```
+  "scripts": {
+    "start": "npm-run-all -p onchange:build start:cra",
+    "onchange:build": "onchange \"src/**/*\" -- npm run build",
+    "start:cra": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js"
+  },
+```

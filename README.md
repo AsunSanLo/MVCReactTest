@@ -12,6 +12,10 @@ Prueba para integrar una página de React en un proyecto de .Net MVC. También i
 
 * MVCTest_Dll - Aplicación Front con React con ejemplo de código y componentes para ser reutilizados entre diferentes proyectos
 
+## Configuración de un nuevo widget
+
+[Ver este Readme](MVCTest/MVCTest/ReactApp/ts-sample-widget/README.md) para seguir los pasos de creación de un nuevo widget con React y TypeScript 
+
 ## Descripción técnica
 
 La solución Front está en una carpeta dentro de la solución MVC para que pueda ser fácilmente referenciada. Ha sido creada con la plantilla create-react-app sin TypeScript. Para que funcione el caso de uso son necesarias dos cosas que no funcionan simplemente con la plantilla:
