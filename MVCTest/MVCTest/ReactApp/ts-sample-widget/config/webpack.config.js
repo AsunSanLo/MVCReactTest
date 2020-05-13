@@ -1,6 +1,6 @@
 'use strict';
 
-const basePath = '/ReactApp/ts-sample-widget/build/';
+const basePath = '';
 const defaultConfig = require('./webpack.config.default.js');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -9,6 +9,7 @@ module.exports = mode => {
   //Loads default CRA webpack configuration
   const config = defaultConfig(mode);
 
+  if (mode === 'development') return config;
 
   //Config to generate the bundled css without hash
   config.plugins.push(new MiniCssExtractPlugin({
@@ -23,8 +24,8 @@ module.exports = mode => {
 
 
   //Config to avoid including react js inside the bundle
-  config.externals = config.externals || {};
-  config.externals.react = "React";
+  //config.externals = config.externals || {};
+  //config.externals.react = "React";
 
   //Config to set the base path to load media resources along the code 
   config.module.rules.forEach(topRule => {
